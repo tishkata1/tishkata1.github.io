@@ -1,0 +1,192 @@
+html, body{
+    width: 100%;
+    height: 100%;
+    font-family: Georgia, sans-serif;
+}
+html, body, h2, h3, div, p, a, span{
+    margin: 0;
+    padding: 0;
+}
+.site-wrapper, .header-wrapper, .content-wrapper, .footer-wrapper{
+    width: 100%;
+    position: relative;
+}
+.header-inner-wrapper, .content-inner-wrapper, .footer-inner-wrapper{
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+    padding-top: 40px;
+}
+.header-wrapper{
+    background: #290000;
+}
+.header-inner-wrapper .logo-navigation-wrapper{
+    float: left;
+    width: 100%;
+}
+.header-inner-wrapper .logo{
+    float: left;
+    text-align: left;
+}
+.header-inner-wrapper .logo h3{
+    font-size: 21px;
+    color: #fff;
+}
+.header-inner-wrapper .logo span{
+    font-size: 11px;
+    display: block;
+    margin-top: -3px;
+    color: #979797;
+}
+.header-inner-wrapper .menu{
+    float: right;
+}
+.header-inner-wrapper .menu a{
+    padding: 12px 18px;
+    text-decoration: none;
+    color: #fff;
+}
+.header-inner-wrapper .menu a:hover{
+    background: #76c38f;
+    border-radius: 12px;
+}
+.header-inner-wrapper .menu .ham-icon{
+    display: none;
+}
+.swiper-container {
+    width: 100%;
+    height: 100%;
+    margin-top: 120px;
+    padding-bottom: 45px;
+}
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #290000;
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+.swiper-button-next{
+    background-image: url("right-arrow.png");
+    background-size: auto;
+    right: -5px;
+}
+.swiper-button-prev{
+    background-image: url("left-arrow.png");
+    background-size: auto;
+    left: -5px;
+}
+.swiper-container .swiper-slide .left-part{
+    float: left;
+    width: 45%;
+    padding-left: 45px;
+    padding-right: 15px;
+    text-align: left;
+}
+.swiper-container .swiper-slide .left-part h2{
+    color: #fff;
+    font-size: 43px;
+    font-weight: 300;
+    padding-bottom: 25px;
+}
+.swiper-container .swiper-slide .left-part p{
+    color: #979797;
+    font-size: 13px;
+    padding-bottom: 30px;
+    line-height: 19px;
+}
+.swiper-container .swiper-slide .left-part .read-more-btn{
+    color: #fff;
+    text-decoration: none;
+    padding: 15px 12px;
+    background: #76c38f;
+    border-radius: 12px;
+    font-size: 14px;
+}
+.swiper-container .swiper-slide .right-part{
+    width: 55%;
+    float: left;
+    padding-right: 45px;
+    position: relative;
+}
+.swiper-container .swiper-slide .right-part .image-holder{
+    width: 380px;
+    height: 380px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #333333;
+    border: 25px solid #6b6b6b;
+}
+/* 2nd part - Content part ********************************************/
+.content-wrapper{
+    background-color: #660000;
+}
+.service-items{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 60px;
+}
+.service-items .item{
+    width: 23%;
+    background-color: #fff;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.service-items .item .image-holder{
+    width: 120px;
+    height: 120px;
+    background: #333;
+    margin: 0 auto;
+}
+.service-items .item .text-holder h3{
+    font-size: 32px;
+    padding: 15px 25px 20px;
+}
+.service-items .item .text-holder p{
+    font-size: 12px;
+    color: #979797;
+    line-height: 16px;
+    padding: 0 25px;
+}
+.latest-work{
+    border-top: 2px solid #303030;
+    padding-bottom: 40px;
+    display: flex;
+}
+.latest-work .title{
+    background-color: #303030;
+    border-radius: 12px;
+    padding: 5px 10px;
+    font-size: 32px;
+    line-height: 38px;
+    margin: auto;
+    margin-top: -26px;
+    color: #fff;
+}
+.latest-work .images-wrapper{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.latest-work .images-wrapper .image-holder{
+    width: 30%;
+    box-sizing: border-box;
+    max-width: 290px;
+    height: 190px;
+    border: 5px solid #fff;
+    background-color: #6b6b6b;
+}
