@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JS Drum Kit</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<style>
+  .wrapper{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    height: 28vh;
+  }
+  .wrapper .keys{
+    min-height: unset;
+  }
+  .buttons{
+    position: absolute;
+    top: 20px;
+    right: 50px;
+  }
+  .btn1, .btn2{
+    color: #ffffff;
+    font-size: 20px;
+    background-color: #ffc600;
+    padding: 10px 20px;
+    border: 2px solid #000;
+    cursor: pointer;
+    margin-top: 5px;
+    width: 150px;
+    text-align: center;
+  }
+  .ownbeat{
+    padding: 5px 15px;
+    background-color: red; 
+    width: auto;
+    position: absolute;
+    right: 50px;
+    bottom: 50px;
+    font-size: 20px;
+    text-align: center;
+    cursor: pointer;
+  }
+  .newbeat{
+    padding: 5px 15px;
+    background-color: tomato; 
+    width: auto;
+    position: absolute;
+    right: 50px;
+    bottom: 10px;
+    font-size: 20px;
+    text-align: center;
+    cursor: pointer;
+  }
+</style>
+
+  <div class="wrapper">
+    <div class="keys">
+      <div data-key="65" class="key">
+        <kbd>A</kbd>
+        <span class="sound">ей, хора</span>
+      </div>
+      <div data-key="83" class="key">
+        <kbd>S</kbd>
+        <span class="sound">hihat</span>
+      </div>
+      <div data-key="68" class="key">
+        <kbd>D</kbd>
+        <span class="sound">kick</span>
+      </div>
+      <div data-key="70" class="key">
+        <kbd>F</kbd>
+        <span class="sound">openhat</span>
+      </div>
+      <div data-key="71" class="key">
+        <kbd>G</kbd>
+        <span class="sound">boom</span>
+      </div>
+      <div data-key="72" class="key">
+        <kbd>H</kbd>
+        <span class="sound">ride</span>
+      </div>
+      <div data-key="74" class="key">
+        <kbd>J</kbd>
+        <span class="sound">snare</span>
+      </div>
+      <div data-key="75" class="key">
+        <kbd>K</kbd>
+        <span class="sound">tom</span>
+      </div>
+      <div data-key="76" class="key">
+        <kbd>L</kbd>
+        <span class="sound">яка пържола</span>
+      </div>
+    </div>
+
+    <div class="keys">
+      <div data-key="81" class="key">
+        <kbd>Q</kbd>
+        <span class="sound">clap</span>
+      </div>
+      <div data-key="87" class="key">
+        <kbd>W</kbd>
+        <span class="sound">hihat</span>
+      </div>
+      <div data-key="69" class="key">
+        <kbd>E</kbd>
+        <span class="sound">kick</span>
+      </div>
+      <div data-key="82" class="key">
+        <kbd>R</kbd>
+        <span class="sound">openhat</span>
+      </div>
+      <div data-key="84" class="key">
+        <kbd>T</kbd>
+        <span class="sound">boom</span>
+      </div>
+      <div data-key="89" class="key">
+        <kbd>Y</kbd>
+        <span class="sound">ride</span>
+      </div>
+      <div data-key="85" class="key">
+        <kbd>U</kbd>
+        <span class="sound">snare</span>
+      </div>
+      <div data-key="73" class="key">
+        <kbd>I</kbd>
+        <span class="sound">tom</span>
+      </div>
+      <div data-key="79" class="key">
+        <kbd>O</kbd>
+        <span class="sound">tink</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="buttons">
+    <div class="btn1">
+      Play beat <span>1</span>
+    </div>
+    <div class="btn2">
+      Play beat <span>2</span>
+    </div>
+  </div>
+
+  <audio data-class="btn1" class="beat" src="sounds/22/beat.mp3"></audio>
+  <audio data-class="btn2" class="beat" src="sounds/22/beat2.mp3"></audio>
+
+  <audio data-key="81" src="sounds/clap.wav"></audio>
+  <audio data-key="87" src="sounds/hihat.wav"></audio>
+  <audio data-key="69" src="sounds/kick.wav"></audio>
+  <audio data-key="82" src="sounds/openhat.wav"></audio>
+  <audio data-key="84" src="sounds/boom.wav"></audio>
+  <audio data-key="89" src="sounds/ride.wav"></audio>
+  <audio data-key="85" src="sounds/snare.wav"></audio>
+  <audio data-key="73" src="sounds/tom.wav"></audio>
+  <audio data-key="79" src="sounds/tink.wav"></audio>
+
+  <audio data-key="65" src="sounds/22/1.wav"></audio>
+  <audio data-key="83" src="sounds/22/2.wav"></audio>
+  <audio data-key="68" src="sounds/22/3.wav"></audio>
+  <audio data-key="70" src="sounds/22/4.wav"></audio>
+  <audio data-key="71" src="sounds/22/5.wav"></audio>
+  <audio data-key="72" src="sounds/22/6.wav"></audio>
+  <audio data-key="74" src="sounds/22/7.wav"></audio>
+  <audio data-key="75" src="sounds/22/8.wav"></audio>
+  <audio data-key="76" src="sounds/22/9.wav"></audio>
+
+  <div class="ownbeat">
+    play you own beat
+  </div>
+  <div class="newbeat">
+    try new beat
+  </div>
+
+<script>
+  function removeTransition(e) {
+    if (e.propertyName !== 'transform') return;
+    e.target.classList.remove('playing');
+  }
+
+    sounds = [];
+  function playSound(e) {
+    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+    const key = document.querySelector(`.wrapper div[data-key="${e.keyCode}"]`);
+    let currTime = new Date();
+
+    if (!audio) return;
+
+    key.classList.add('playing');
+    audio.currentTime = 0;
+    audio.play();
+
+    if(sounds.length < 6){
+      sounds.push({"data-key": key.attributes["data-key"].value, "timeout": currTime.getTime()});
+      console.table(sounds)
+    }
+  }
+
+  function playBeat(e) {
+    const beat = document.querySelectorAll(".beat[data-class="+e.target.classList.value+"]")[0];
+    const button = document.querySelector("." + e.target.classList.value);
+    const number = document.querySelector("." + e.target.classList.value +" span").innerText;
+
+    if(beat.paused){
+      beat.play();
+      button.innerHTML = "Pause beat <span>"+number+"</span>";
+    }else{
+      beat.pause(); 
+      button.innerHTML = "Play beat <span>"+number+"</span>";
+    }
+  };
+
+  function ownBeat(){
+    let firstTime = sounds[0]["timeout"];
+
+    for(i=0; i<sounds.length; i++){
+      sounds[i]["timeout"] = sounds[i]["timeout"] - firstTime;
+      let audio = document.querySelector("audio[data-key='"+ sounds[i]['data-key'] +"']");
+      setTimeout(function(){
+        audio.play();
+      }, sounds[i]["timeout"]);
+    }
+  }
+
+  function newBeat(){
+    sounds = [];
+  }
+
+  const keys = Array.from(document.querySelectorAll('.key'));
+  keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+  window.addEventListener('keydown', playSound);
+  document.querySelector(".ownbeat").addEventListener('click', ownBeat);
+  document.querySelector(".newbeat").addEventListener('click', newBeat);
+  
+  (function(){
+    let nodeL = document.querySelectorAll(".buttons div");
+    let arr = Array.from(nodeL);
+    for(i=0; i<=arr.length; i++){
+      document.querySelector("."+arr[i].className).addEventListener("click", playBeat);
+    }
+  })();
+</script>
+
+
+</body>
+</html>
